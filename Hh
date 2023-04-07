@@ -1,0 +1,43 @@
+import turtle
+
+# set up the screen
+screen = turtle.Screen()
+screen.title("Bouncing Ball Game")
+screen.bgcolor("white")
+
+# create the top line
+top_line = turtle.Turtle()
+top_line.penup()
+top_line.goto(-200, 100)
+top_line.pendown()
+top_line.goto(200, 100)
+
+# create the bottom line
+bottom_line = turtle.Turtle()
+bottom_line.penup()
+bottom_line.goto(-200, -100)
+bottom_line.pendown()
+bottom_line.goto(200, -100)
+
+# create the ball
+ball = turtle.Turtle()
+ball.shape("circle")
+ball.color("red")
+ball.penup()
+ball.goto(0, 0)
+ball.dx = 2  # set the x velocity
+ball.dy = 2  # set the y velocity
+
+# main game loop
+while True:
+    # move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # check for collision with top line
+    if ball.ycor() > 90 and ball.dy > 0:
+        ball.dy *= -1
+
+    # check for collision with bottom line
+    if ball.ycor() < -90 and ball.dy < 0:
+        ball.dy *= -1
